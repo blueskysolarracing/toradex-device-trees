@@ -10,3 +10,12 @@ Article](https://developer.toradex.com/knowledge-base/device-tree-overlays).
 
 
 # toradex-device-trees
+
+The bssr dts to load is dts-arm64/bssr.dts
+
+## How to push the device tree
+```bash
+torizoncore-builder dt apply device-trees/dts-arm64/bssr.dts
+torizoncore-builder union custom-branch
+torizoncore-builder deploy custom-branch --remote-host 10.0.1.53 --remote-username torizon --remote-password bssr --reboot
+```
