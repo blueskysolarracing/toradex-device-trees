@@ -9,13 +9,14 @@ For more details how to use them refer to the [Developer Website
 Article](https://developer.toradex.com/knowledge-base/device-tree-overlays).
 
 
-# toradex-device-trees
+# toradex-device-trees (IMPORTANT)
 
 The bssr dts to load is dts-arm64/bssr.dts
+This repo should be in the tcbdir directory so you may have to do some mv commands
 
 ## How to push the device tree
 ```bash
-torizoncore-builder dt apply device-trees/dts-arm64/bssr.dts
+torizoncore-builder dt apply toradex-device-trees/dts-arm64/bssr.dts
 torizoncore-builder union custom-branch
 torizoncore-builder deploy custom-branch --remote-host 10.0.1.53 --remote-username torizon --remote-password bssr --reboot
 ```
@@ -135,7 +136,7 @@ If you are using Windows then use the WSL terminal. If you are using Mac or Linu
     
 3. Push changes to the board by running the commands
 ```bash
-torizoncore-builder dt apply device-trees/dts-arm64/bssr.dts
+torizoncore-builder dt apply toradex-device-trees/dts-arm64/bssr.dts
 torizoncore-builder union custom-branch
 torizoncore-builder deploy custom-branch --remote-host 10.0.1.53 --remote-username torizon --remote-password bssr --reboot
 ```
