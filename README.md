@@ -125,7 +125,7 @@ If you are using Windows then use the WSL terminal. If you are using Mac or Linu
         # 10.0.1.53 is the board local IP address
         torizoncore-builder images download --remote-host 10.0.1.53 --remote-username torizon --remote-password bssr
         # Wait a while ...
-        torizoncore-builder dt checkout
+        # torizoncore-builder dt checkout # Commented since this downloads the device trees but this repo already has them
         ```
         
     2. This should create a directory in tcbdir called device-trees
