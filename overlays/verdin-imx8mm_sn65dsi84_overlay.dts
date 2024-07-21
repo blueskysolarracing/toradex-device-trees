@@ -1,0 +1,56 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+/*
+ * Copyright 2020-2021 Toradex
+ */
+
+// Verdin DSI to LVDS Adapter orderable at Toradex.
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "toradex,verdin-imx8mm";
+};
+
+&backlight {
+	status = "okay";
+};
+
+&gpu {
+	status = "okay";
+};
+
+/* Verdin I2C_2_DSI */
+&i2c2 {
+	clock-frequency = <10000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_i2c2>;
+	status = "okay";
+};
+
+&lcdif {
+	status = "okay";
+};
+
+&lvds_ti_sn65dsi83 {
+	status = "okay";
+
+	port {
+		dsi85_in: endpoint {
+			remote-endpoint = <&mipi_dsi_bridge1_out>;
+		};
+	};
+};
+
+&mipi_dsi {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+
+	port@1 {
+		mipi_dsi_bridge1_out: endpoint {
+			remote-endpoint = <&dsi85_in>;
+			attach-bridge;
+		};
+	};
+};

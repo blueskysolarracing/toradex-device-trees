@@ -1,0 +1,29 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+/*
+ * Copyright 2020-2021 Toradex
+ */
+
+// Atmel touchscreen for the 7 inch and 10 inch capacitive display orderable at Toradex. Compatible with a Capacitive Touch Connector.
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "toradex,colibri_imx6dl";
+};
+
+&atmel_mxt_ts {
+	status = "okay";
+};
+
+&fusion_f0710a {
+	status = "disabled";
+};
+
+&i2c3 {
+	status = "okay";
+};
+
+&weim {
+	status = "disabled";
+};

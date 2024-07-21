@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+/*
+ * Copyright 2020-2021 Toradex
+ */
+
+// Enable the LVDS interface on the Apalis iMX6Q. Make sure to also select a valid display configuration.
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "toradex,apalis_imx6q";
+};
+
+&backlight {
+	status = "okay";
+};
+
+&ldb {
+	status = "okay";
+
+	lvds-channel@0 {
+		fsl,data-mapping = "spwg"; /* jeida | spwg */
+		fsl,data-width = <24>;
+		status = "okay";
+
+		display-timings {
+			native-mode = <&timing_wxga>;
+		};
+	};
+};
+
+&mxcfb1 {
+	/* the pixel format between the IPU's DI and LDB */
+	interface_pix_fmt = "RGB24";
+	status = "okay";
+};

@@ -1,0 +1,141 @@
+// SPDX-License-Identifier: GPL-2.0+ OR X11
+/*
+ * Copyright 2019-2020 Toradex
+ */
+
+/dts-v1/;
+
+#include "imx8qm-apalis-v1.1.dtsi"
+#include "imx8-apalis-ixora-v1.1.dtsi"
+/ {
+	model = "Toradex Apalis iMX8QM V1.1 on Apalis Ixora V1.1 Carrier Board";
+	compatible = "toradex,apalis-imx8-v1.1-ixora-v1.1",
+		     "toradex,apalis-imx8-v1.1-ixora",
+		     "toradex,apalis-imx8-v1.1",
+		     "toradex,apalis-imx8",
+		     "fsl,imx8qm";
+};
+
+&iomuxc {
+       pinctrl-names = "default";
+        pinctrl-0 = <&pinctrl_bssr>;
+
+
+        apalis-imx8qm {
+                pinctrl_bssr: bssrgpiogrp {
+                        fsl,pins =
+                            <IMX8QM_ESAI0_TX0_LSIO_GPIO2_IO26 0x104>,
+                            <IMX8QM_USDHC2_DATA2_LSIO_GPIO5_IO28 0x104>,
+                            <IMX8QM_USDHC2_DATA3_LSIO_GPIO5_IO29 0x104>,
+
+                            <IMX8QM_LVDS1_I2C1_SDA_LSIO_GPIO1_IO15 0x104>,
+                            <IMX8QM_ENET1_MDIO_LSIO_GPIO4_IO17 0x104>,
+                            <IMX8QM_ADC_IN5_LSIO_GPIO3_IO23 0x104>,
+                            <IMX8QM_ADC_IN6_LSIO_GPIO3_IO24 0x104>,
+                            <IMX8QM_ADC_IN7_LSIO_GPIO3_IO25 0x104>,
+                            <IMX8QM_SPI0_CS0_LSIO_GPIO3_IO05 0x104>,
+                            <IMX8QM_ESAI0_TX4_RX1_LSIO_GPIO2_IO30 0x104>,
+                            <IMX8QM_ESAI0_TX5_RX0_LSIO_GPIO2_IO31 0x104>,
+
+                            // Misc Module
+                            <IMX8QM_GPT0_COMPARE_LSIO_GPIO0_IO16 0x104>, // left indicator
+                            <IMX8QM_UART0_RTS_B_LSIO_GPIO0_IO22 0x104>, // right indictor
+                            <IMX8QM_UART0_CTS_B_LSIO_GPIO0_IO23 0x104>, // brake light
+                            <IMX8QM_GPT1_COMPARE_LSIO_GPIO0_IO19 0x104>, // DRL
+                            <IMX8QM_ENET1_RGMII_TXD3_LSIO_GPIO6_IO15 0x104>, // Horn
+                            <IMX8QM_ESAI1_SCKT_LSIO_GPIO2_IO07 0x104>, // Driver Fan
+                            <IMX8QM_ENET1_REFCLK_125M_25M_LSIO_GPIO4_IO16 0x104>, // Backup camera
+
+                            // Relay Module
+                            <IMX8QM_ENET1_RGMII_RXD0_LSIO_GPIO6_IO18 0x104>,// Array High Side Relay
+                            <IMX8QM_ENET1_RGMII_TXD2_LSIO_GPIO6_IO14 0x104>, // Array Low Side Relay
+                            <IMX8QM_ENET1_RGMII_TXD1_LSIO_GPIO6_IO13 0x104>,// Array Precharge Relay
+                            <IMX8QM_ENET1_RGMII_RXD3_LSIO_GPIO6_IO21 0x104>,// Battery High Side Relay
+                            <IMX8QM_ENET1_RGMII_RXD2_LSIO_GPIO6_IO20 0x104>, // Battery Low Side Relay
+                            <IMX8QM_ENET1_RGMII_RXD1_LSIO_GPIO6_IO19 0x104>, // Battery Precharge Relay
+                            <IMX8QM_FLEXCAN2_TX_LSIO_GPIO4_IO02 0x104>,// Module Fan
+                            //<>,// Intake Fan
+                            //<>,// Vent Fan
+
+                            <IMX8QM_ENET1_MDC_LSIO_GPIO4_IO18 0x104>, // Safe state trigger
+                            <IMX8QM_LVDS0_GPIO00_LSIO_GPIO1_IO04 0x104>, // 12V_Source_Asc_Switch
+                            <IMX8QM_MIPI_DSI1_GPIO0_00_LSIO_GPIO1_IO22 0x104>, // MPPT_ON
+                            <IMX8QM_QSPI1A_DQS_LSIO_GPIO4_IO22 0x104>, // BMS_COMMS_STATUS_LED
+
+                            <IMX8QM_USDHC2_CMD_LSIO_GPIO5_IO25 0x104>, // Spare 0
+                            <IMX8QM_FLEXCAN1_TX_LSIO_GPIO4_IO00 0x104>, // Spare 2
+
+                            <IMX8QM_USB_SS3_TC3_LSIO_GPIO4_IO06 0x104>, // LED0
+                            
+                            // For INA229 ADCs
+                            <IMX8QM_USDHC1_DATA5_LSIO_GPIO5_IO20 0x104>, // Array CS
+                            <IMX8QM_USDHC1_DATA6_LSIO_GPIO5_IO21 0x104>, // Battery CS
+                            <IMX8QM_USDHC1_DATA4_LSIO_GPIO5_IO19 0x104>, // Motor CS
+                            <IMX8QM_USDHC1_DATA7_LSIO_GPIO5_IO22 0x104>; // PSM CS
+                };
+
+		pinctrl_bssr_lpspi0: bssrlpspi0grp {
+			fsl,pins = <
+				IMX8QM_SPI0_SCK_DMA_SPI0_SCK                    0x0600004c
+				IMX8QM_SPI0_SDO_DMA_SPI0_SDO                    0x0600004c
+				IMX8QM_SPI0_SDI_DMA_SPI0_SDI                    0x0600004c
+			>;
+		};
+
+		// For motor pots
+		pinctrl_bssr_lpspi3: bssrlpspi3grp {
+			fsl,pins = <
+				IMX8QM_UART1_TX_DMA_SPI3_SCK			0x0600004c
+				IMX8QM_UART1_RX_DMA_SPI3_SDO                    0x0600004c
+				IMX8QM_UART1_RTS_B_DMA_SPI3_SDI			0x0600004c
+			>;
+		};
+
+		pinctrl_bssr_uart: bssruartgrp {
+			fsl,pins = 
+				<IMX8QM_LVDS0_I2C1_SCL_DMA_UART2_TX 0x104>, // Radio Tx
+				<IMX8QM_LVDS0_I2C1_SDA_DMA_UART2_RX 0x104>; // Radio Rx
+		};
+        };
+};
+
+/delete-node/ &pinctrl_lpspi0;
+
+&lpspi0 {
+	pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_bssr_lpspi0>;
+    #address-cells = <1>;
+    #size-cells = <0>;
+	/delete-property/ cs-gpios;
+
+        spidev0: spi@0 {
+                compatible = "toradex,evalspi";
+                reg = <0>;
+                spi-max-frequency = <4000000>;
+        };
+};
+
+&lpuart1 {
+	status = "disabled";
+};
+
+&lpspi3 {
+	status = "okay";
+	pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_bssr_lpspi3>;
+    #address-cells = <1>;
+    #size-cells = <0>;
+	/delete-property/ cs-gpios;
+
+        motorspidev: motorspi@0 {
+                compatible = "linux,spidev";
+                reg = <0>;
+                spi-max-frequency = <4000000>;
+        };
+};
+
+&lpuart2 {
+    status = "okay";
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_bssr_uart>;
+};

@@ -1,0 +1,32 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+/*
+ * Copyright 2020-2021 Toradex
+ */
+
+// Enable the dsi to hdmi adapter orderable at Toradex for Colibri iMX8X
+
+/dts-v1/;
+/plugin/;
+/ {
+	compatible = "toradex,colibri-imx8x";
+};
+
+&i2c0_mipi_lvds0 {
+	status = "okay";
+};
+
+&lt8912_hdmi {
+	status = "okay";
+};
+
+&mipi0_dphy {
+	status = "okay";
+};
+
+&mipi0_dsi_host {
+	status = "okay";
+};
+
+&pca9540_switch {
+	status = "okay";
+};

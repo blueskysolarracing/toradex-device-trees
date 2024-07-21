@@ -1,0 +1,28 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/pinctrl/pads-imx8qm.h>
+
+/ {
+    compatible = "toradex,apalis-imx8";
+};
+&iomuxc {
+       pinctrl-names = "default";
+        pinctrl-0 = <&test_regen>;
+
+
+        apalis-imx8qm {
+                test_regen: gpiogrp {
+                        fsl,pins =
+                                <IMX8QM_USDHC2_DATA2_LSIO_GPIO5_IO28 0x104>,
+                                <IMX8QM_LVDS1_I2C1_SDA_LSIO_GPIO1_IO15 0x104>,
+				<IMX8QM_ENET1_MDIO_LSIO_GPIO4_IO17 0x104>,
+				<IMX8QM_ADC_IN5_LSIO_GPIO3_IO23 0x104>,
+				<IMX8QM_ADC_IN6_LSIO_GPIO3_IO24 0x104>,
+				<IMX8QM_ADC_IN7_LSIO_GPIO3_IO25 0x104>,
+				/*<IMX8QM_SPI0_CS0_LSIO_GPIO3_IO05 0x104>,*/
+				<IMX8QM_ESAI0_TX4_RX1_LSIO_GPIO2_IO30 0x104>,
+				<IMX8QM_ESAI0_TX5_RX0_LSIO_GPIO2_IO31 0x104>;
+                };
+        };
+};

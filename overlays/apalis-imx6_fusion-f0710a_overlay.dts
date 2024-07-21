@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+/*
+ * Copyright 2020-2021 Toradex
+ */
+
+// Overlay for legacy Fusion 7 inch and 10 inch capacitive multi-touch displays
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "toradex,apalis_imx6q";
+};
+
+&atmel_mxt_ts {
+	status = "disabled";
+};
+
+&fusion_f0710a {
+	status = "okay";
+};
+
+&i2c1 {
+	status = "okay";
+};

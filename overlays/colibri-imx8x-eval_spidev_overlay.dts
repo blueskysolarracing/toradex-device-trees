@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+/*
+ * Copyright 2020-2021 Toradex
+ */
+
+// SPI generic spidev device for Colibri iMX8X.
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "toradex,colibri-imx8x-eval-v3";
+};
+
+&lpspi2 {
+	status = "okay";
+};
+
+&mcp2515 {
+	status = "disabled";
+};
+
+&spidev0 {
+	status = "okay";
+};
