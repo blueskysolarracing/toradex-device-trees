@@ -24,6 +24,7 @@
         apalis-imx8qm {
                 pinctrl_bssr: bssrgpiogrp {
                         fsl,pins =
+
                             <IMX8QM_ESAI0_TX0_LSIO_GPIO2_IO26 0x104>,
                             <IMX8QM_USDHC2_DATA2_LSIO_GPIO5_IO28 0x104>,
                             <IMX8QM_USDHC2_DATA3_LSIO_GPIO5_IO29 0x104>,
@@ -50,10 +51,12 @@
                             <IMX8QM_ENET1_RGMII_RXD0_LSIO_GPIO6_IO18 0x104>,// Array High Side Relay
                             <IMX8QM_ENET1_RGMII_TXD2_LSIO_GPIO6_IO14 0x104>, // Array Low Side Relay
                             <IMX8QM_ENET1_RGMII_TXD1_LSIO_GPIO6_IO13 0x104>,// Array Precharge Relay
-                            <IMX8QM_ENET1_RGMII_RXD3_LSIO_GPIO6_IO21 0x104>,// Battery High Side Relay
-                            <IMX8QM_ENET1_RGMII_RXD2_LSIO_GPIO6_IO20 0x104>, // Battery Low Side Relay
-                            <IMX8QM_ENET1_RGMII_RXD1_LSIO_GPIO6_IO19 0x104>, // Battery Precharge Relay
-                            <IMX8QM_FLEXCAN2_TX_LSIO_GPIO4_IO02 0x104>,// Module Fan
+                            
+                            // Battery Relays
+                            <IMX8QM_MLB_SIG_LSIO_GPIO3_IO26 0x104>,// Battery High Side Relay
+                            <IMX8QM_FLEXCAN2_TX_LSIO_GPIO4_IO02 0x104>, // Battery Low Side Relay
+                            <IMX8QM_MLB_DATA_LSIO_GPIO3_IO28 0x104>, // Battery Precharge Relay
+
                             //<>,// Intake Fan
                             //<>,// Vent Fan
 
