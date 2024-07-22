@@ -1320,6 +1320,12 @@
 		reg = <0>;
 		spi-max-frequency = <4000000>;
 	};
+
+	spidev2: spi@0 {
+		compatible = "toradex,evalspi";
+		reg = <1>;
+		spi-max-frequency = <4000000>;
+	};
 };
 
 /* Apalis UART3 */

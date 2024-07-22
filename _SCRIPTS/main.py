@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import pandas as pd
 
 data = pd.read_csv("search.csv")
@@ -22,8 +23,9 @@ for row in data['BFMv2 Signal Name']:
     for line in lines:
         if row_func in line:
             found = True
-            row_func = row_func.split(' ')
-            outfile.write("<" + row_func[0] + " 0x104>, //" + row + "\n")
+            line = line.split(' ')
+            line = line[1].split('\t')
+            outfile.write("<" + line[0] + " 0x104>, //" + row + "\n")
             break
 
     if not found:
