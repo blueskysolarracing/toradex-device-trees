@@ -28,6 +28,10 @@
                             <IMX8QM_USDHC2_DATA2_LSIO_GPIO5_IO28 0x104>,
                             <IMX8QM_USDHC2_DATA3_LSIO_GPIO5_IO29 0x104>,
 
+                            <IMX8QM_LVDS1_GPIO00_LSIO_GPIO1_IO10 0x104>,
+
+
+
                             <IMX8QM_LVDS1_I2C1_SDA_LSIO_GPIO1_IO15 0x104>,
                             <IMX8QM_ENET1_MDIO_LSIO_GPIO4_IO17 0x104>,
                             <IMX8QM_ADC_IN5_LSIO_GPIO3_IO23 0x104>,
