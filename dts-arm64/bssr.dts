@@ -26,7 +26,8 @@
                         fsl,pins =
 
                             // Battery Module
-                            <IMX8QM_UART1_CTS_B_DMA_SPI3_CS0 0x104>, //BMS_CS
+                            //<IMX8QM_UART1_CTS_B_DMA_SPI3_CS0 0x104>, //BMS_CS
+                            <IMX8QM_UART1_CTS_B_LSIO_GPIO0_IO27 0x104>, //BMS_CS
                             <IMX8QM_M41_GPIO0_01_LSIO_GPIO0_IO13 0x104>, //SAFE_STATE_TRIGGER
                             <IMX8QM_FLEXCAN2_RX_LSIO_GPIO4_IO01 0x104>, //HORN_ENABLE
                             <IMX8QM_FLEXCAN2_TX_LSIO_GPIO4_IO02 0x104>, //LS_RELAY_CTRL
@@ -34,8 +35,8 @@
                             <IMX8QM_MLB_DATA_LSIO_GPIO3_IO28 0x104>, //PRE_RELAY_CTRL
 
                             // Driver Interface Module
-                            <IMX8QM_SPI0_CS0_DMA_SPI0_CS0 0x104>, //STEERING_CS_GPIO
-                            <IMX8QM_SPI0_CS1_DMA_SPI0_CS1 0x104>, //STEERING_CS_DISP
+                            <IMX8QM_SPI0_CS0_LSIO_GPIO3_IO05 0x104>, //STEERING_CS_GPIO
+                            <IMX8QM_SPI0_CS1_LSIO_GPIO3_IO06 0x104>, //STEERING_CS_DISP
                             <IMX8QM_LVDS1_GPIO00_LSIO_GPIO1_IO10 0x104>, //STEERING_DISP_LED_CTRL
                             <IMX8QM_ENET1_RGMII_RXD3_LSIO_GPIO6_IO21 0x104>, //REVERSE_CAMERA_CTRL
                             <IMX8QM_ENET1_RGMII_RXD2_LSIO_GPIO6_IO20 0x104>, //BRAKE_SENSOR_BUFFER
@@ -82,7 +83,9 @@
                             <IMX8QM_LVDS0_GPIO00_LSIO_GPIO1_IO04 0x104>, //DEBUG_LED2_CTRL
                             <IMX8QM_M40_GPIO0_01_LSIO_GPIO0_IO09 0x104>, //USER_BUTTON_0
                             <IMX8QM_M41_GPIO0_00_LSIO_GPIO0_IO12 0x104>, //HEATSINK_FAN_CTRL
-                            <IMX8QM_SPI2_CS0_DMA_SPI2_CS0 0x104>, //ADC_CS
+
+                            //<IMX8QM_SPI2_CS0_DMA_SPI2_CS0 0x104>, //ADC_CS
+                            <IMX8QM_SPI2_CS0_LSIO_GPIO3_IO10 0x104>, //ADC_CS
 
                             // PSM
                             <IMX8QM_USDHC1_DATA4_LSIO_GPIO5_IO19 0x104>, //PSM_MOTOR_CS
@@ -119,21 +122,24 @@
                 >;
             };
 
+            /*
             // Debug
             pinctrl_bssr_uart0: bssruart0grp {
                 fsl,pins = 
                     <IMX8QM_UART0_RX_DMA_UART0_RX 0x104>, //DEBUG_UART3_RX
                     <IMX8QM_UART0_TX_DMA_UART0_TX 0x104>; //DEBUG_UART3_TX
             };
+            */
             
-            // Sensor
+            // Radio
             pinctrl_bssr_uart1: bssruart1grp {
                 fsl,pins = 
                     <IMX8QM_LVDS0_I2C1_SCL_DMA_UART2_TX 0x104>, // Radio Tx
                     <IMX8QM_LVDS0_I2C1_SDA_DMA_UART2_RX 0x104>; // Radio Rx
             };
             
-            // Radio
+            /*
+            // Sensor
             pinctrl_bssr_uart2: bssruart2grp {
                 fsl,pins = 
                     <IMX8QM_M41_GPIO0_00_DMA_UART3_RX 0x104>, //SENSOR_UART2_TX
@@ -154,6 +160,7 @@
                     <IMX8QM_SIM0_PD_DMA_I2C3_SCL 0x104>, //SENSOR_I2C3_SDA
                     <IMX8QM_SIM0_POWER_EN_DMA_I2C3_SDA 0x104>; //SENSOR_I2C3_SCL
             };
+        */
 
         };
 };
@@ -176,15 +183,19 @@
 
 };
 
+&lpuart1 {
+    status = "disabled";
+};
+
 //spidev1
 &lpspi2 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_lpspi2>;
+	pinctrl-0 = <&pinctrl_bssr_lpspi2>;
 	#address-cells = <1>;
 	#size-cells = <0>;
 	/delete-property/ cs-gpios;
 
-	spidev2: spi@0 {
+	spiextra: extraspi@0 {
 		compatible = "toradex,evalspi";
 		reg = <0>;
 		spi-max-frequency = <4000000>;
@@ -207,11 +218,13 @@
         };
 };
 
+/*
 &lpuart0 {
     status = "okay";
     pinctrl-names = "default";
     pinctrl-0 = <&pinctrl_bssr_uart0>;
 };
+*/
 
 &lpuart2 {
     status = "okay";
@@ -219,6 +232,7 @@
     pinctrl-0 = <&pinctrl_bssr_uart1>;
 };
 
+/*
 &lpuart3 {
     status = "okay";
     pinctrl-names = "default";
@@ -236,3 +250,4 @@
     pinctrl-names = "default";
     pinctrl-0 = <&pinctrl_bssr_i2c1>;
 };
+*/
