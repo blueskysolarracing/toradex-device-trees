@@ -42,12 +42,6 @@
                             <IMX8QM_ENET1_RGMII_RXD2_LSIO_GPIO6_IO20 0x104>, //BRAKE_SENSOR_BUFFER
 
 
-                            // Miscellaneous Module
-                            <IMX8QM_GPT1_COMPARE_LSIO_PWM2_OUT 0x104>, //LIGHTS_DRL_CTRL
-                            <IMX8QM_GPT0_COMPARE_LSIO_PWM3_OUT 0x104>, //LIGHTS_LEFT_IND_CTRL
-                            <IMX8QM_UART0_RTS_B_LSIO_PWM0_OUT 0x104>, //LIGHTS_RIGHT_IND_CTRL
-                            <IMX8QM_UART0_CTS_B_LSIO_PWM1_OUT 0x104>, //LIGHTS_BRAKE_CTRL
-
                             // Sensor Module
                             <IMX8QM_QSPI1A_SS1_B_LSIO_GPIO4_IO20 0x104>, //SENSOR_STRAIN_RST
                             <IMX8QM_QSPI1A_SCLK_LSIO_GPIO4_IO21 0x104>, //SENSOR_IMU_RST
@@ -63,6 +57,7 @@
                             <IMX8QM_ENET1_RGMII_TXD2_LSIO_GPIO6_IO14 0x104>, //MOTOR_MAIN
                             <IMX8QM_ENET1_RGMII_TXD1_LSIO_GPIO6_IO13 0x104>, //MOTOR_FWD/REV
                             <IMX8QM_ENET1_RGMII_TXD0_LSIO_GPIO6_IO12 0x104>, //MOTOR_VFM_UP
+                            <IMX8QM_M40_GPIO0_00_LSIO_GPIO0_IO08 0x104>, //VFM_MOTOR_PWM
                             <IMX8QM_ENET1_RGMII_TXC_LSIO_GPIO6_IO10 0x104>, //MOTOR_VFM_DOWN
                             <IMX8QM_ENET1_RGMII_TX_CTL_LSIO_GPIO6_IO11 0x104>, //MOTOR_PWR/ECO
                             <IMX8QM_ENET1_RGMII_RX_CTL_LSIO_GPIO6_IO17 0x104>, //MOTOR_VFM_RESET
@@ -146,6 +141,7 @@
                     <IMX8QM_M41_GPIO0_01_DMA_UART3_TX 0x104>; //SENSOR_UART2_RX
                     
             };
+            */
             
             // Sensor1
             pinctrl_bssr_i2c0: bssri2c0grp {
@@ -160,11 +156,21 @@
                     <IMX8QM_SIM0_PD_DMA_I2C3_SCL 0x104>, //SENSOR_I2C3_SDA
                     <IMX8QM_SIM0_POWER_EN_DMA_I2C3_SDA 0x104>; //SENSOR_I2C3_SCL
             };
-        */
 
+            pinctrl_bssr_pwm2: pwm2grp {
+                fsl,pins = <
+                    IMX8QM_GPT1_COMPARE_LSIO_PWM2_OUT		0x00000020
+                >;
+            };
+            pinctrl_bssr_pwm_vfm: pwmgrpvfm {
+                fsl,pins = <
+                    IMX8QM_M40_GPIO0_00_M40_TPM0_CH0		0x00000020
+                >;
+            };
         };
 };
 
+///delete-node/ backlight;
 /delete-node/ &pinctrl_lpspi0;
 
 // spidev0
@@ -238,6 +244,7 @@
     pinctrl-names = "default";
     pinctrl-0 = <&pinctrl_bssr_uart2>;
 };
+*/
 
 &i2c2 {
     status = "okay";
@@ -245,9 +252,18 @@
     pinctrl-0 = <&pinctrl_bssr_i2c0>;
 };
 
+// on torizon side: /dev/i2c3 = strain sensor multiplexor
 &i2c3 {
     status = "okay";
     pinctrl-names = "default";
     pinctrl-0 = <&pinctrl_bssr_i2c1>;
 };
-*/
+
+/* Apalis PWM1, MXM3 pin 2 */
+&pwm2 {
+    status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_pwm2>;
+	#pwm-cells = <3>;
+};
+
