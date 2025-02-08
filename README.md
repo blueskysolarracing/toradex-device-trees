@@ -119,7 +119,7 @@ If you are using Windows then use the WSL terminal. If you are using Mac or Linu
 2. Then enter docker by typing `sudo systemctl start docker` you can test it has started by typing `docker run --rm hello-world`
     1. There are some known issues where a previous exit code error prevents docker from starting in the next instance.
 [How to Fix control process exited with error code.](https://www.notion.so/How-to-Fix-control-process-exited-with-error-code-58f8e90e803e436da9dba986e18a1727?pvs=21)
-1. Then start the `tcb-env-setup.sh`, start `torizoncore-builder -h` 
+1. Then `source tcb-env-setup.sh`, start `torizoncore-builder -h` 
 2. Install dependencies and packages
     1. To get the files that correspond to the current board, we need to execute the following with the toradex connected to the bssr network (ie. plug in an ethernet cable) and your computer connected to the bssr wifi.
         ```bash
